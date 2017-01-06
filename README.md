@@ -101,13 +101,13 @@ the methods and functionality of the endpoint.
 
 Ping the status system to ensure it is available.
 
-**Request**
+##### Request
 
 ```javascript
 cachet.ping()
 ```
 
-**Response**
+##### Response
 
 ```json
 {
@@ -119,13 +119,13 @@ cachet.ping()
 
 Fetch the current version of the system.
 
-**Request**
+##### Request
 
 ```javascript
 cachet.version()
 ```
 
-**Response**
+##### Response
 
 ```json
 {
@@ -147,7 +147,7 @@ cachet.version()
 
 Fetch all of the components.
 
-**Request Parameters**
+##### Parameters
 
   * sort
   * order
@@ -159,17 +159,13 @@ Fetch all of the components.
   * groupId
   * enabled
 
-**Request**
+##### Request
 
 ```javascript
 cachet.getComponents({ ... parameters ... })
-  .then(response => {
-    console.log(response.body);
-    //
-  });
 ```
 
-**Response**
+##### Response
 
 ```json
 {
@@ -211,19 +207,19 @@ cachet.getComponents({ ... parameters ... })
 
 #### getComponentById
 
-**Request Parameters**
+##### Parameters
 
   * component
 
-**Request**
+##### Request
 
 ```javascript
 cachet.getComponentById({
   component: 4
-});
+})
 ```
 
-**Response**
+##### Response
 
 ```json
 {
@@ -248,7 +244,7 @@ cachet.getComponentById({
 
 #### createComponent
 
-**Parameters**
+##### Parameters
 
   * body
     * name
@@ -259,17 +255,17 @@ cachet.getComponentById({
     * group_id
     * enabled
 
-**Request**
+##### Request
 
 ```javascript
 cachet.createComponent({
   body: {
     name: 'Foo'
   }
-});
+})
 ```
 
-**Response**
+##### Response
 
 ```json
 {
@@ -293,7 +289,7 @@ cachet.createComponent({
 
 #### updateComponentById
 
-**Parameters**
+##### Parameters
 
   * component
   * body
@@ -304,7 +300,7 @@ cachet.createComponent({
     * group_id
     * enabled
 
-**Request**
+##### Request
 
 ```javascript
 cachet.createComponent({
@@ -312,10 +308,10 @@ cachet.createComponent({
   body: {
     enabled: 0
   }
-});
+})
 ```
 
-**Response**
+##### Response
 
 ```json
 {
@@ -340,197 +336,367 @@ cachet.createComponent({
 
 #### deleteComponentById
 
-**Parameters**
+##### Parameters
 
   * component
 
-**Request**
+##### Request
 
 ```javascript
 cachet.deleteComponentById({
   component: 4
-});
+})
 ```
 
-**Response**
+##### Response
 
 There is no response for this other than the status code.
 
 ### Component Groups
 
-**Parameters**
-
-**Request**
-
-**Response**
-
 #### getComponentGroups
 
-**Parameters**
+##### Parameters
 
-**Request**
+  * id
+  * name
+  * collapsed
+  * sort
+  * order
+  * perPage
+  * page
 
-**Response**
+##### Request
+
+```javascript
+cachet.getComponentGroups({ ... parameters ... })
+```
+
+##### Response
+
+```json
+{
+  "meta": {
+    "pagination": {
+      "total": 1,
+      "count": 1,
+      "per_page": 20,
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "next_page": null,
+        "previous_page": null
+      }
+    }
+  },
+  "data": [
+    {
+      "id": 1,
+      "name": "Example Group",
+      "created_at": "2017-01-05 16:52:50",
+      "updated_at": "2017-01-05 16:53:23",
+      "order": 0,
+      "collapsed": 0,
+      "visible": 1,
+      "enabled_components": [
+        {
+          "id": 1,
+          "name": "Example",
+          "description": "",
+          "status": 1,
+          "order": 0,
+          "group_id": 1,
+          "created_at": "2017-01-05 16:52:00",
+          "updated_at": "2017-01-06 02:27:32",
+          "deleted_at": null,
+          "enabled": true,
+          "meta": null,
+          "link": "https://status.example.com",
+          "status_name": "Operational",
+          "tags": {
+            "": ""
+          }
+        }
+      ],
+      "enabled_components_lowest": [
+        {
+          "id": 1,
+          "name": "Example",
+          "description": "",
+          "status": 1,
+          "order": 0,
+          "group_id": 1,
+          "created_at": "2017-01-05 16:52:00",
+          "updated_at": "2017-01-06 02:27:32",
+          "deleted_at": null,
+          "enabled": true,
+          "meta": null,
+          "link": "https://status.example.com",
+          "status_name": "Operational",
+          "tags": {
+            "": ""
+          }
+        }
+      ],
+      "lowest_human_status": "Operational"
+    }
+  ]
+}
+```
 
 #### createComponentGroup
 
-**Parameters**
+##### Parameters
 
-**Request**
+  * name
+  * order
+  * collapsed
 
-**Response**
+##### Request
+
+```javascript
+cachet.createComponentGroup({
+  body: {
+    name: 'Foo Group'
+  }
+})
+```
+
+##### Response
+
+```json
+{
+  "data": {
+    "order": 0,
+    "collapsed": 0,
+    "visible": 0,
+    "name": "Foo Group",
+    "updated_at": "2017-01-06 20:06:49",
+    "created_at": "2017-01-06 20:06:49",
+    "id": 2,
+    "lowest_human_status": null
+  }
+}
+```
 
 #### getComponentGroupById
 
-**Parameters**
+##### Parameters
 
-**Request**
+  * group
 
-**Response**
+##### Request
+
+```javascript
+cachet.getComponentGroupById({
+  group: 2
+})
+```
+
+##### Response
+
+```json
+{
+  "data": {
+    "id": 2,
+    "name": "Foo Group",
+    "created_at": "2017-01-06 20:06:49",
+    "updated_at": "2017-01-06 20:06:49",
+    "order": 0,
+    "collapsed": 0,
+    "visible": 0,
+    "enabled_components": [],
+    "enabled_components_lowest": [],
+    "lowest_human_status": null
+  }
+}
+```
 
 #### updateComponentGroupById
 
-**Parameters**
+##### Parameters
 
-**Request**
+  * group
+  * body
+    * name
+    * order
+    * collapsed
 
-**Response**
+##### Request
+
+```javascript
+cachet.updateComponentGroupById({
+  group: 2,
+  body: {
+    order: 10
+  }
+})
+```
+
+##### Response
+
+```json
+{
+  "data": {
+    "id": 2,
+    "name": "Foo Group",
+    "created_at": "2017-01-06 20:06:49",
+    "updated_at": "2017-01-06 20:09:43",
+    "order": 10,
+    "collapsed": 0,
+    "visible": 0,
+    "enabled_components": [],
+    "enabled_components_lowest": [],
+    "lowest_human_status": null
+  }
+}
+```
 
 #### deleteComponentGroupById
 
-**Parameters**
+##### Parameters
 
-**Request**
+  * group
 
-**Response**
+##### Request
+
+```javascript
+cachet.deleteComponentGroupById({
+  group: 2
+})
+```
+
+##### Response
+
+There is no response for this other than the status code.
 
 ### Incidents
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### getIncidents
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### createIncident
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### getIncidentById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### updateIncidentById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### deleteIncidentById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### getIncidentUpdatesById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### getIncidentUpdateById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 ### Metrics
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### getMetrics
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### createMetric
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### getMetricById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### deleteMetricById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### getMetricPointsById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### createMetricPointById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 #### deleteMetricPointById
 
-**Parameters**
+##### Parameters
 
-**Request**
+##### Request
 
-**Response**
+##### Response
 
 ## Contributing
 
