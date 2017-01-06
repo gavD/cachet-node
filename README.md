@@ -16,6 +16,7 @@ Currently it supports the following operations from the [Cachet API Reference](h
 ## Table of Contents
 
   * [Usage](#usage)
+    * [Installation](#installation)
     * [Basics](#basics)
       * [Parameters](#parameters)
     * [General](#general)
@@ -51,6 +52,12 @@ Currently it supports the following operations from the [Cachet API Reference](h
   * [Contributing](#contributing)
 
 ## Usage
+
+### Installation
+
+```
+npm install cachet-node
+```
 
 ### Basics
 
