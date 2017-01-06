@@ -1,0 +1,38 @@
+{
+  "name": "cachet-node",
+  "version": "0.1.0",
+  "description": "Cachet API implementation",
+  "main": "index.js",
+  "scripts": {
+    "build": "bin/build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+      "cachet",
+      "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mwillbanks/cachet-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mwillbanks/cachet-node/issues"
+  },
+  "homepage": "https://github.com/mwillbanks/cachet-node",
+  "author": {
+    "name": "Mike Willbanks",
+    "url": "https://mike.pw"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "swagger-js-codegen": "^1.7.11",
+    "yamljs": "^0.2.8"
+  },
+  "dependencies": {
+    "q": "^1.4.1",
+    "request": "^2.79.0"
+  }
+}
