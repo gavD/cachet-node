@@ -897,57 +897,257 @@ cachet.getIncidentUpdateById({
 
 ##### Parameters
 
+  * sort
+  * order
+  * perPage
+  * page
+
 ##### Request
 
+```javascript
+cachet.getMetric({ ... parameters ... })
+```
+
 ##### Response
+
+```json
+{
+  "meta": {
+    "pagination": {
+      "total": 1,
+      "count": 1,
+      "per_page": "20",
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "next_page": null,
+        "previous_page": null
+      }
+    }
+  },
+  "data": [
+    {
+      "id": 1,
+      "name": "Coffee",
+      "suffix": "Cups",
+      "description": "Cups of coffee consumed.",
+      "default_value": "0.000",
+      "calc_type": 1,
+      "display_chart": 1,
+      "created_at": "2015-08-01 12:00:00",
+      "updated_at": "2015-08-01 12:00:00",
+      "default_view_name": "Last 12 Hours"
+    }
+  ]
+}
+```
 
 #### createMetric
 
 ##### Parameters
 
+  * body
+    * name
+    * suffix
+    * description
+    * default_value
+    * display_chart
+
 ##### Request
 
+```javascript
+cachet.createMetric({
+  body: {
+    name: "Visitors",
+    description: "How many visitors",
+    suffix: "Visitors per hour",
+    default_value: 0,
+    display_chart: 1
+  }
+}
+```
+
 ##### Response
+
+```json
+{
+  "name":"Visitors",
+  "description":"How many visitors",
+  "suffix":"Visitors per hour",
+  "default_value":"0",
+  "display_chart":"1"
+}
+```
 
 #### getMetricById
 
 ##### Parameters
 
+  * metric
+
 ##### Request
 
+```javascript
+cachet.getMetricById({
+  metric: 1
+})
+```
+
 ##### Response
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "Coffee",
+    "suffix": "Cups",
+    "description": "Cups of coffee consumed.",
+    "default_value": "0.000",
+    "calc_type": 1,
+    "display_chart": 1,
+    "created_at": "2015-08-01 12:00:00",
+    "updated_at": "2015-08-01 12:00:00",
+    "default_view_name": "Last 12 Hours"
+  }
+}
+```
 
 #### deleteMetricById
 
 ##### Parameters
 
+  * metric
+
 ##### Request
 
+```javascript
+cachet.deleteMetricById({
+  metric: 1
+})
+```
+
 ##### Response
+
+There is no response for this other than the status code.
 
 #### getMetricPointsById
 
 ##### Parameters
 
+  * metric
+  * sort
+  * order
+  * perPage
+  * page
+
 ##### Request
 
+```javascript
+cachet.getMetricPointsById({
+  metric: 1
+})
+```
+
 ##### Response
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "metric_id": 1,
+      "value": 1,
+      "created_at": "2015-03-11 14:21:44",
+      "updated_at": "2015-03-11 14:21:44"
+    },
+    {
+      "id": 2,
+      "metric_id": 1,
+      "value": 3,
+      "created_at": "2015-03-11 14:22:11",
+      "updated_at": "2015-03-11 14:22:11"
+    },
+    {
+      "id": 3,
+      "metric_id": 1,
+      "value": 3,
+      "created_at": "2015-03-11 14:34:55",
+      "updated_at": "2015-03-11 14:34:55"
+    }
+  ]
+}
+```
 
 #### createMetricPointById
 
 ##### Parameters
 
+  * metric
+  * body
+    * value
+    * timestamp
+
 ##### Request
 
+```javascript
+cachet.createMetricPointById({
+  metric: 1,
+  body: {
+    value: 3
+    timestamp: '2015-03-11 14:34:55'
+  }
+}
+```
+
 ##### Response
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "metric_id": 1,
+      "value": 1,
+      "created_at": "2015-03-11 14:21:44",
+      "updated_at": "2015-03-11 14:21:44"
+    },
+    {
+      "id": 2,
+      "metric_id": 1,
+      "value": 3,
+      "created_at": "2015-03-11 14:22:11",
+      "updated_at": "2015-03-11 14:22:11"
+    },
+    {
+      "id": 3,
+      "metric_id": 1,
+      "value": 3,
+      "created_at": "2015-03-11 14:34:55",
+      "updated_at": "2015-03-11 14:34:55"
+    }
+  ]
+}
+```
 
 #### deleteMetricPointById
 
 ##### Parameters
 
+  * metric
+  * point
+
 ##### Request
 
+```javascript
+cachet.deleteMetricPointById({
+  metric: 1,
+  point: 3
+})
+```
+
 ##### Response
+
+There is no response for this other than the status code.
 
 ## Contributing
 
