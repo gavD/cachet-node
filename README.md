@@ -572,75 +572,326 @@ There is no response for this other than the status code.
 
 ### Incidents
 
-##### Parameters
-
-##### Request
-
-##### Response
-
 #### getIncidents
 
 ##### Parameters
 
+  * id
+  * componentId
+  * name
+  * status
+  * visible
+  * sort
+  * order
+  * perPage
+  * page
+
 ##### Request
 
+```javascript
+cachet.getIncidents({ ... parameters ... })
+```
+
 ##### Response
+
+```json
+{
+  "meta": {
+    "pagination": {
+      "total": 1,
+      "count": 1,
+      "per_page": "20",
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "next_page": null,
+        "previous_page": null
+      }
+    }
+  },
+  "data": [
+    {
+      "id": 1,
+      "component_id": 0,
+      "name": "Incident Name",
+      "status": 4,
+      "visible": 1,
+      "message": "Incident Message",
+      "scheduled_at": "2015-08-01 12:00:00",
+      "created_at": "2015-08-01 12:00:00",
+      "updated_at": "2015-08-01 12:00:00",
+      "deleted_at": null,
+      "human_status": "Fixed"
+    }
+  ]
+}
+```
 
 #### createIncident
 
 ##### Parameters
 
+  * body
+    * name
+    * message
+    * status
+    * visible
+    * component_id
+    * component_status
+    * notify
+    * created_at
+    * template
+    * vars
+
 ##### Request
 
+```javascript
+cachet.createIncident({
+  body: {
+    name: 'Incident Name',
+    message: 'Incident Message',
+    status: 4,
+    visible: 1
+  }
+})
+```
+
 ##### Response
+
+```json
+{
+  "data": {
+    "id": 1,
+    "component_id": 0,
+    "name": "Incident Name",
+    "status": 4,
+    "visible": 1,
+    "message": "Incident Message",
+    "scheduled_at": "2015-08-01 12:00:00",
+    "created_at": "2015-08-01 12:00:00",
+    "updated_at": "2015-08-01 12:00:00",
+    "deleted_at": null,
+    "human_status": "Fixed"
+  }
+}
+```
 
 #### getIncidentById
 
 ##### Parameters
 
+  * incident
+
 ##### Request
 
+```javascript
+cachet.getIncidentById({
+  incident: 1
+})
+```
+
 ##### Response
+
+```json
+{
+  "data": {
+    "id": 1,
+    "component_id": 0,
+    "name": "Incident Name",
+    "status": 4,
+    "visible": 1,
+    "message": "Incident Message",
+    "scheduled_at": "2015-08-01 12:00:00",
+    "created_at": "2015-08-01 12:00:00",
+    "updated_at": "2015-08-01 12:00:00",
+    "deleted_at": null,
+    "human_status": "Fixed"
+  }
+}
+```
 
 #### updateIncidentById
 
 ##### Parameters
 
+  * incident
+  * body
+    * name
+    * message
+    * status
+    * visible
+    * component_id
+    * component_status
+    * notify
+
 ##### Request
 
+```javascript
+cachet.updateIncidentById({
+  incident: 1,
+  body: {
+    name: 'Foo'
+  }
+})
+```
+
 ##### Response
+
+```json
+{
+  "data": {
+    "id": 1,
+    "component_id": 0,
+    "name": "Foo",
+    "status": 4,
+    "visible": 1,
+    "message": "Incident Message",
+    "scheduled_at": "2015-08-01 12:00:00",
+    "created_at": "2015-08-01 12:00:00",
+    "updated_at": "2015-08-01 12:00:01",
+    "deleted_at": null,
+    "human_status": "Fixed"
+  }
+}
+```
 
 #### deleteIncidentById
 
 ##### Parameters
 
+  * incident
+
 ##### Request
 
+```javascript
+cachet.deleteIncidentById({
+  incident: 1
+})
+```
+
 ##### Response
+
+There is no response for this other than the status code.
 
 #### getIncidentUpdatesById
 
 ##### Parameters
 
+  * incident
+  * sort
+  * order
+  * perPage
+  * page
+
 ##### Request
 
+```javascript
+cachet.getIncidentUpdatesById({
+  incident: 1
+})
+```
+
 ##### Response
+
+```json
+{
+  "meta":{
+    "pagination":{
+      "total":4,
+      "count":4,
+      "per_page":20,
+      "current_page":1,
+      "total_pages":1,
+      "links":{
+        "next_page":null,
+        "previous_page":null
+      }
+    }
+  },
+  "data":[
+    {
+      "id":1,
+      "incident_id":1,
+      "status":4,
+      "message":"The monkeys are back and rested!",
+      "user_id":1,
+      "created_at":"2016-12-05 19:37:20",
+      "updated_at":"2016-12-05 19:37:20",
+      "human_status":"Fixed",
+      "permalink":"http://cachet.app/incidents/1#update-1"
+    },
+    {
+      "id":2,
+      "incident_id":1,
+      "status":3,
+      "message":"Our monkeys need a break from performing. They'll be back after a good rest.",
+      "user_id":1,
+      "created_at":"2016-12-05 19:37:20",
+      "updated_at":"2016-12-05 19:37:20",
+      "human_status":"Watching",
+      "permalink":"http://cachet.app/incidents/1#update-2"
+    },
+    {
+      "id":3,
+      "incident_id":1,
+      "status":2,
+      "message":"We have identified the issue with our lovely performing monkeys.",
+      "user_id":1,
+      "created_at":"2016-12-05 19:37:20",
+      "updated_at":"2016-12-05 19:37:20",
+      "human_status":"Identified",
+      "permalink":"http://cachet.app/incidents/1#update-3"
+    },
+    {
+      "id":4,
+      "incident_id":2,
+      "status":3,
+      "message":"We're actively watching this issue, so it remains unresolved.",
+      "user_id":1,
+      "created_at":"2016-12-05 19:37:20",
+      "updated_at":"2016-12-05 19:37:20",
+      "human_status":"Watching",
+      "permalink":"http://cachet.app/incidents/2#update-4"
+    }
+  ]
+}
+```
 
 #### getIncidentUpdateById
 
 ##### Parameters
 
+  * incident
+  * update
+
 ##### Request
 
+```javascript
+cachet.getIncidentUpdateById({
+  incident: 1,
+  update: 1
+})
+```
+
 ##### Response
+
+```json
+{
+  "data": {
+    "id":1,
+    "incident_id":1,
+    "status":4,
+    "message":"The monkeys are back and rested!",
+    "user_id":1,
+    "created_at":"2016-12-05 19:37:20",
+    "updated_at":"2016-12-05 19:37:20",
+    "human_status":"Fixed",
+    "permalink":"http://cachet.app/incidents/1#update-1"
+  }
+}
+```
 
 ### Metrics
-
-##### Parameters
-
-##### Request
-
-##### Response
 
 #### getMetrics
 
