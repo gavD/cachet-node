@@ -310,7 +310,7 @@ cachet.createComponent({
 ##### Request
 
 ```javascript
-cachet.createComponent({
+cachet.updateComponentById({
   component: 4,
   body: {
     enabled: 0
